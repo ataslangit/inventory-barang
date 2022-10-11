@@ -1,7 +1,10 @@
 <?php
+
+$barang = new \Ataslangit\DB\Barang();
+
 if (isset($_POST['save'])) {
-    $barang->simpan_barang_gudang($_POST['kdbarang'], $_POST['hargaj'], $_GET['kdbl']);
-    echo "<script>bootbox.alert('Data Berhasil Di Tambahkan!', function(){
+	$barang->simpan_barang_gudang($_POST['kdbarang'], $_POST['hargaj'], $_GET['kdbl']);
+	echo "<script>bootbox.alert('Data Berhasil Di Tambahkan!', function(){
 				window.location = 'index.php?page=barangpembelian';
 			});</script>";
 }
@@ -13,7 +16,7 @@ $bel = $barang->ambil_barangpem($_GET['kdbl']);
 			<div class="box-header">
 				<h3 class="box-title" style="padding-top:0; margin-top:0; color:#f00;">Simpan Barang Ke Gudang</h3>
 			</div>
-			<hr/>
+			<hr />
 			<div class="box-body">
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
@@ -38,57 +41,56 @@ $bel = $barang->ambil_barangpem($_GET['kdbl']);
 </div>
 <script>
 	//upper
-	$(function(){
+	$(function() {
 		$('#kdbarang').focusout(function() {
-        	// Uppercase-ize contents
-        	this.value = this.value.toLocaleUpperCase();
-    	});
+			// Uppercase-ize contents
+			this.value = this.value.toLocaleUpperCase();
+		});
 	});
 	//fungsi hide div
-	$(function(){
-		setTimeout(function(){$("#divAlert").fadeOut(900)}, 500);
+	$(function() {
+		setTimeout(function() {
+			$("#divAlert").fadeOut(900)
+		}, 500);
 	});
 	//ajax
-	$(document).ready(function(){
-		$('#kdbarang').blur(function(){
+	$(document).ready(function() {
+		$('#kdbarang').blur(function() {
 			var kdbarang = $(this).val();
 			if (kdbarang == "") {
 				$('#showresult').html("");
-			}
-			else{
+			} else {
 				$.ajax({
-					url: "validasi/cek-kdbarang.php?kdbarang="+kdbarang
-				}).done(function(data){
+					url: "validasi/cek-kdbarang.php?kdbarang=" + kdbarang
+				}).done(function(data) {
 					$('#showresult').html(data);
 				});
 			}
 		});
 	});
 	//validasi form
-	function validateText(id){
-		if ($('#'+id).val()== null || $('#'+id).val()== "") {
-			var div = $('#'+id).closest('div');
+	function validateText(id) {
+		if ($('#' + id).val() == null || $('#' + id).val() == "") {
+			var div = $('#' + id).closest('div');
 			div.addClass("has-error has-feedback");
 			return false;
-		}
-		else{
-			var div = $('#'+id).closest('div');
+		} else {
+			var div = $('#' + id).closest('div');
 			div.removeClass("has-error has-feedback");
 			return true;
 		}
 	}
-	$(document).ready(function(){
-		$("#formbtn").click(function(){
-	        var input = kdbarang.value;
+	$(document).ready(function() {
+		$("#formbtn").click(function() {
+			var input = kdbarang.value;
 			if (!validateText('kdbarang')) {
 				$('#kdbarang').focus();
 				return false;
-			}
-			else if (!(/^\S{0,}$/.test(input))) {
-	           	$('#kdbarang').focus();
-	           	bootbox.alert('Tidak Boleh Menggunakan Spasi');
-	            return false;
-	        }else if (!validateText('hargaj')) {
+			} else if (!(/^\S{0,}$/.test(input))) {
+				$('#kdbarang').focus();
+				bootbox.alert('Tidak Boleh Menggunakan Spasi');
+				return false;
+			} else if (!validateText('hargaj')) {
 				$('#hargaj').focus();
 				return false;
 			}

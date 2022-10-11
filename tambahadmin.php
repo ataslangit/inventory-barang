@@ -1,20 +1,24 @@
+<?php
+
+$admin = new \Ataslangit\DB\Admin();
+?>
 <div class="row">
 	<div class="col-md-12">
 		<div class="box">
 			<div class="box-header">
 				<h3 class="box-title" style="padding-top:0; margin-top:0; color:#f00;">Tambah Admin</h3>
 			</div>
-			<hr/>
+			<hr />
 			<div class="box-body">
 				<?php
-                    if (isset($_POST['save'])) {
-                        $admin->simpan_admin($_POST['email'], $_POST['pass'], $_POST['nama'], $_FILES['gambar']);
-                        echo "<div class='alert alert-info alert-dismissable' id='divAlert'>
+                if (isset($_POST['save'])) {
+                    $admin->simpan_admin($_POST['email'], $_POST['pass'], $_POST['nama'], $_FILES['gambar']);
+                    echo "<div class='alert alert-info alert-dismissable' id='divAlert'>
                                 <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
                                 Data Tersimpan
                                 </div>";
-                    }
-				?>
+                }
+                ?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Email</label>
@@ -41,23 +45,25 @@
 </div>
 <script>
 	//fungsi hide div
-	$(function(){
-		setTimeout(function(){$("#divAlert").fadeOut(900)}, 500);
+	$(function() {
+		setTimeout(function() {
+			$("#divAlert").fadeOut(900)
+		}, 500);
 	});
-	function validateText(id){
-		if ($('#'+id).val()== null || $('#'+id).val()== "") {
-			var div = $('#'+id).closest('div');
+
+	function validateText(id) {
+		if ($('#' + id).val() == null || $('#' + id).val() == "") {
+			var div = $('#' + id).closest('div');
 			div.addClass("has-error has-feedback");
 			return false;
-		}
-		else{
-			var div = $('#'+id).closest('div');
+		} else {
+			var div = $('#' + id).closest('div');
 			div.removeClass("has-error has-feedback");
 			return true;
 		}
 	}
-	$(document).ready(function(){
-		$("#formbtn").click(function(){
+	$(document).ready(function() {
+		$("#formbtn").click(function() {
 			if (!validateText('formemail')) {
 				$('#formemail').focus();
 				return false;

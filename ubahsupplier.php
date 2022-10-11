@@ -1,20 +1,23 @@
+<?php
+$supplier = new \Ataslangit\DB\Supllier();
+?>
 <div class="row">
 	<div class="col-md-12">
 		<div class="box">
 			<div class="box-header">
 				<h3 class="box-title" style="padding-top:0; margin-top:0; color:#f00;">Ubah Supplier</h3>
 			</div>
-			<hr/>
+			<hr />
 			<div class="box-body">
 				<?php
-                    if (isset($_POST['save'])) {
-                        $supplier->ubah_supplier($_POST['nama'], $_POST['alamat'], $_GET['id']);
-                        echo "<script>bootbox.alert('Data Terubah', function(){
+                if (isset($_POST['save'])) {
+                    $supplier->ubah_supplier($_POST['nama'], $_POST['alamat'], $_GET['id']);
+                    echo "<script>bootbox.alert('Data Terubah', function(){
 							window.location = 'index.php?page=supplier';
 						});</script>";
-                    }
-                    $sp = $supplier->ambil_supplier($_GET['id']);
-				?>
+                }
+                $sp = $supplier->ambil_supplier($_GET['id']);
+                ?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Nama Supplier</label>
@@ -33,23 +36,25 @@
 </div>
 <script>
 	//fungsi hide div
-	$(function(){
-		setTimeout(function(){$("#divAlert").fadeOut(900)}, 500);
+	$(function() {
+		setTimeout(function() {
+			$("#divAlert").fadeOut(900)
+		}, 500);
 	});
-	function validateText(id){
-		if ($('#'+id).val()== null || $('#'+id).val()== "") {
-			var div = $('#'+id).closest('div');
+
+	function validateText(id) {
+		if ($('#' + id).val() == null || $('#' + id).val() == "") {
+			var div = $('#' + id).closest('div');
 			div.addClass("has-error has-feedback");
 			return false;
-		}
-		else{
-			var div = $('#'+id).closest('div');
+		} else {
+			var div = $('#' + id).closest('div');
 			div.removeClass("has-error has-feedback");
 			return true;
 		}
 	}
-	$(document).ready(function(){
-		$("#formbtn").click(function(){
+	$(document).ready(function() {
+		$("#formbtn").click(function() {
 			if (!validateText('nama')) {
 				$('#nama').focus();
 				return false;

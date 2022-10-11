@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+error_reporting(32767);
 session_start();
 require __DIR__ . '/vendor/autoload.php';
 

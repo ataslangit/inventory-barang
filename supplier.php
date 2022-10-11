@@ -1,4 +1,7 @@
 <?php
+
+$supplier = new \Ataslangit\DB\Supllier();
+
 if (isset($_GET['hapus'])) {
     $supplier->hapus_supplier($_GET['hapus']);
     echo "<script>location='index.php?page=supplier';</script>";
@@ -6,7 +9,7 @@ if (isset($_GET['hapus'])) {
 ?>
 <div class="row">
     <div class="col-md-12">
-    <!-- Advanced Tables -->
+        <!-- Advanced Tables -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 Data Supplier
@@ -24,20 +27,21 @@ if (isset($_GET['hapus'])) {
                         </thead>
                         <tbody>
                             <?php
-                                $sp = $supplier->tampil_supplier();
+                            $sp = $supplier->tampil_supplier();
 
-foreach ($sp as $index => $data) {
-    ?>
-                            <tr class="odd gradeX">
-                                <td><?= $index + 1; ?></td>
-                                <td><?= $data['nama_supplier']; ?></td>
-                                <td><?= $data['alamat']; ?></td>
-                                <td>
-                                    <a href="index.php?page=ubahsupplier&id=<?= $data['kd_supplier']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a href="index.php?page=supplier&hapus=<?= $data['kd_supplier']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
-                                </td>
-                            </tr>
-                            <?php } ?>
+                            foreach ($sp as $index => $data) {
+                                ?>
+                                <tr class="odd gradeX">
+                                    <td><?= $index + 1; ?></td>
+                                    <td><?= $data['nama_supplier']; ?></td>
+                                    <td><?= $data['alamat']; ?></td>
+                                    <td>
+                                        <a href="index.php?page=ubahsupplier&id=<?= $data['kd_supplier']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                        <a href="index.php?page=supplier&hapus=<?= $data['kd_supplier']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
+                                    </td>
+                                </tr>
+                            <?php
+                            } ?>
                         </tbody>
                     </table>
                 </div>

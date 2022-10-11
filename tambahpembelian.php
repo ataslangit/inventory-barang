@@ -1,18 +1,21 @@
-<div class="row">
 <?php
-    $kode  = $pembelian->kode_otomatis();
-$subtotal  = $pembelian->hitung_total_sementara($kode);
-$cekbarang = $pembelian->cek_data_barangp($kode);
+$pembelian = new \Ataslangit\DB\Pembelian();
+?>
+<div class="row">
+	<?php
+    $kode      = $pembelian->kode_otomatis();
+    $subtotal  = $pembelian->hitung_total_sementara($kode);
+    $cekbarang = $pembelian->cek_data_barangp($kode);
 
-if (isset($_POST['tambah'])) {
-    $pembelian->tambah_barang_sementara($kode, $_POST['nama'], $_POST['satuan'], $_POST['hargab'], $_POST['item']);
-    echo "<script>location='index.php?page=tambahpembelian';</script>";
-}
-if (isset($_POST['save'])) {
-    $pembelian->simpan_pembelian($_POST['kdpembelian'], $_POST['tglpembelian'], $_POST['supplier'], $subtotal);
-    $pem     = $pembelian->ambil_kdpem();
-    $kodepem = $pem['kd_pembelian'];
-    echo "<script>
+    if (isset($_POST['tambah'])) {
+        $pembelian->tambah_barang_sementara($kode, $_POST['nama'], $_POST['satuan'], $_POST['hargab'], $_POST['item']);
+        echo "<script>location='index.php?page=tambahpembelian';</script>";
+    }
+    if (isset($_POST['save'])) {
+        $pembelian->simpan_pembelian($_POST['kdpembelian'], $_POST['tglpembelian'], $_POST['supplier'], $subtotal);
+        $pem     = $pembelian->ambil_kdpem();
+        $kodepem = $pem['kd_pembelian'];
+        echo "<script>
 			bootbox.confirm('Lanjutkan Cetak Nota!', function(confirmed){
         	if (confirmed) {
         		window.location ='index.php?page=tambahpembelian';
@@ -22,13 +25,13 @@ if (isset($_POST['save'])) {
         	}
         });
 		</script>";
-}
+    }
 
-if (isset($_GET['hapusbs'])) {
-    $pembelian->hapus_barang_sementara($_GET['hapusbs']);
-    echo "<script>location='index.php?page=tambahpembelian';</script>";
-}
-?>
+    if (isset($_GET['hapusbs'])) {
+        $pembelian->hapus_barang_sementara($_GET['hapusbs']);
+        echo "<script>location='index.php?page=tambahpembelian';</script>";
+    }
+    ?>
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -57,7 +60,7 @@ if (isset($_GET['hapusbs'])) {
 			<div class="panel-footer">
 				<button class="btn btn-info" name="tambah" id="tambah"><i class="fa fa-plus"></i> Tambah</button>
 			</div>
-				</form>
+			</form>
 		</div>
 	</div>
 	<div class="col-md-6">
@@ -81,14 +84,14 @@ if (isset($_GET['hapusbs'])) {
 						<select class="form-control" name="supplier" id="supplier">
 							<option value="">Pilih Supplier</option>
 							<?php
-                                $sp = $supplier->tampil_supplier();
+                            $sp = $supplier->tampil_supplier();
 
-foreach ($sp as $index => $data) {
-    ?>
-							<option value="<?= $data['kd_supplier']; ?>"><?= $data['nama_supplier']; ?></option>
+                            foreach ($sp as $index => $data) {
+                                ?>
+								<option value="<?= $data['kd_supplier']; ?>"><?= $data['nama_supplier']; ?></option>
 							<?php
-}
-?>
+                            }
+                            ?>
 						</select>
 					</div>
 			</div>
@@ -97,14 +100,15 @@ foreach ($sp as $index => $data) {
 	<div class="col-md-12">
 
 		<div class="panel-footer" align="center">
-		<?php if ($cekbarang === true): ?>
-			<button id="formbtn" class="btn btn-primary" name="save"><i class="fa fa-save"></i> Simpan</button>
-		<?php endif ?>
-		<?php if ($cekbarang === false): ?>
-			<button id="formbtn" class="btn btn-primary" name="save" disabled="disabled"><i class="fa fa-save"></i> Simpan</button>
-		<?php endif ?>
+			<?php if ($cekbarang === true) : ?>
+				<button id="formbtn" class="btn btn-primary" name="save"><i class="fa fa-save"></i> Simpan</button>
+			<?php endif ?>
+			<?php if ($cekbarang === false) : ?>
+				<button id="formbtn" class="btn btn-primary" name="save" disabled="disabled"><i class="fa fa-save"></i> Simpan</button>
+			<?php endif ?>
 		</div>
-				</form><!--End Form-->
+		</form>
+		<!--End Form-->
 	</div>
 	<div class="col-md-12">
 		<table class="table table-bordered table-responsive table-hover">
@@ -121,26 +125,27 @@ foreach ($sp as $index => $data) {
 			</thead>
 			<tbody>
 				<?php
-                    if ($cekbarang === false) {
-                        echo "<tr><td colspan='7' align='center'>Data saat ini kosong</td></tr>";
-                    } else {
-                        $br = $pembelian->tampil_barang_sementara($kode);
+                if ($cekbarang === false) {
+                    echo "<tr><td colspan='7' align='center'>Data saat ini kosong</td></tr>";
+                } else {
+                    $br = $pembelian->tampil_barang_sementara($kode);
 
-                        foreach ($br as $index => $data) {
-                            ?>
-				<tr>
-					<td><?= $index + 1; ?></td>
-					<td><?= $data['nama_barangp']; ?></td>
-					<td><?= $data['satuan']; ?></td>
-					<td><?= number_format($data['harga_barangp']); ?></td>
-					<td><?= $data['item']; ?></td>
-					<td><?= number_format($data['total']); ?></td>
-					<td>
-						<a href="index.php?page=tambahpembelian&hapusbs=<?= $data['id_barangp']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
-					</td>
-				</tr>
-				<?php }
-                        }?>
+                    foreach ($br as $index => $data) {
+                        ?>
+						<tr>
+							<td><?= $index + 1; ?></td>
+							<td><?= $data['nama_barangp']; ?></td>
+							<td><?= $data['satuan']; ?></td>
+							<td><?= number_format($data['harga_barangp']); ?></td>
+							<td><?= $data['item']; ?></td>
+							<td><?= number_format($data['total']); ?></td>
+							<td>
+								<a href="index.php?page=tambahpembelian&hapusbs=<?= $data['id_barangp']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
+							</td>
+						</tr>
+				<?php
+                    }
+                } ?>
 				<tr class="active">
 					<td colspan="5" align="center"><strong>Subtotal</strong></td>
 					<td colspan="2"><?= number_format($subtotal); ?></td>
@@ -151,57 +156,54 @@ foreach ($sp as $index => $data) {
 </div>
 <script>
 	//upper
-	$(function(){
-    	$('#satuan').focusout(function() {
-        	// Uppercase-ize contents
-        	this.value = this.value.toLocaleUpperCase();
-    	});
+	$(function() {
+		$('#satuan').focusout(function() {
+			// Uppercase-ize contents
+			this.value = this.value.toLocaleUpperCase();
+		});
 	});
 	//fungsi hide div
-	$(function(){
-		setTimeout(function(){$("#divAlert").fadeOut(900)}, 500);
+	$(function() {
+		setTimeout(function() {
+			$("#divAlert").fadeOut(900)
+		}, 500);
 	});
 	//validasi form
-	function validateText(id){
-		if ($('#'+id).val()== null || $('#'+id).val()== "") {
-			var div = $('#'+id).closest('div');
+	function validateText(id) {
+		if ($('#' + id).val() == null || $('#' + id).val() == "") {
+			var div = $('#' + id).closest('div');
 			div.addClass("has-error has-feedback");
 			return false;
-		}
-		else{
-			var div = $('#'+id).closest('div');
+		} else {
+			var div = $('#' + id).closest('div');
 			div.removeClass("has-error has-feedback");
 			return true;
 		}
 	}
-	$(document).ready(function(){
-		$("#formbtn").click(function(){
+	$(document).ready(function() {
+		$("#formbtn").click(function() {
 			if (!validateText('tglpembelian')) {
 				$('#tglpembelian').focus();
 				return false;
-			}
-			else if (!validateText('supplier')) {
+			} else if (!validateText('supplier')) {
 				$('#supplier').focus();
 				return false;
 			}
 			return true;
 		});
 	});
-	$(document).ready(function(){
-		$("#tambah").click(function(){
+	$(document).ready(function() {
+		$("#tambah").click(function() {
 			if (!validateText('nama')) {
 				$('#nama').focus();
 				return false;
-			}
-			else if (!validateText('satuan')) {
+			} else if (!validateText('satuan')) {
 				$('#satuan').focus();
 				return false;
-			}
-			else if (!validateText('hargab')) {
+			} else if (!validateText('hargab')) {
 				$('#hargab').focus();
 				return false;
-			}
-			else if (!validateText('item')) {
+			} else if (!validateText('item')) {
 				$('#item').focus();
 				return false;
 			}

@@ -1,4 +1,5 @@
 <?php
+$penjualan = new \Ataslangit\DB\Penjualan();
 $kode      = $penjualan->kode_otomatis();
 $subtotal  = $penjualan->hitung_total_sementara($kode);
 $cekbarang = $penjualan->cek_data_barangp($kode);
@@ -145,8 +146,9 @@ if (isset($_GET['proses'])) {
 						<a href="index.php?page=tambahpenjualan&hapus=<?= $data['id_penjualan_sementara']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
 					</td>
 				</tr>
-				<?php }
-                        }?>
+				<?php
+                        }
+                    }?>
 				<tr class="active">
 					<td colspan="5" align="center"><strong>Subtotal</strong></td>
 					<td colspan="2"><?= number_format($subtotal); ?></td>
@@ -192,7 +194,8 @@ foreach ($brg as $index => $data) {
                                     <a href="index.php?page=tambahpenjualan&proses=<?= $data['kd_barang']; ?>" class="btn btn-success btn-xs"><i class="fa fa-download"></i> Prosess</a>
                                 </td>
                             </tr>
-                            <?php } ?>
+                            <?php
+} ?>
                         </tbody>
                     </table>
                 </div>
