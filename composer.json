@@ -6,5 +6,10 @@
     "scripts": {
         "csfix": "vendor/bin/php-cs-fixer fix",
         "test": "phpunit"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ataslangit\\DB\\": "class/"
+        }
     }
 }

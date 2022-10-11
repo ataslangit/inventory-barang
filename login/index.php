@@ -1,3 +1,21 @@
+<?php
+session_start();
+require __DIR__ . '../../vendor/autoload.php';
+
+// include '../class/class.php';
+$admin = new Ataslangit\DB\Admin();
+
+if (isset($_POST['login'])) {
+    $cek = $admin->login_admin($_POST['username'], $_POST['password']);
+
+    if ($cek === true) {
+        echo "<script>window.location='../index.php';</script>";
+    }// jika salah atau tidak benar maka login ulang
+    else {
+        echo "<script>alert('Login Gagal, Password / Email Salah!');</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html >
   <head>
@@ -30,15 +48,4 @@
     <script src="js/index.js"></script>
   </body>
 </html>
-<?php
-include '../class/class.php';
-if (isset($_POST['login'])) {
-    $cek = $admin->login_admin($_POST['username'], $_POST['password']);
-    if ($cek === true) {
-        echo "<script>window.location='../index.php';</script>";
-    }// jika salah atau tidak benar maka login ulang
-    else {
-        echo "<script>alert('Login Gagal, Password / Email Salah!');</script>";
-    }
-}
-?>
+

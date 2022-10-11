@@ -1,6 +1,8 @@
 <?php
-include 'class/class.php';
 error_reporting(0);
+session_start();
+require __DIR__ . '/vendor/autoload.php';
+
 if (empty($_SESSION['login_admin'])) {
     echo "<script>
     alert('Anda Belum Login!');
