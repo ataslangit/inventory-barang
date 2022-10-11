@@ -32,8 +32,8 @@ if (isset($_GET['hapus'])) {
                             <?php
                             $pem = $pembelian->tampil_pembelian();
 
-                            foreach ($pem as $index => $data) {
-                                $jumlahb = $pembelian->hitung_item_pembelian($data['kd_pembelian']); ?>
+foreach ($pem as $index => $data) {
+    $jumlahb = $pembelian->hitung_item_pembelian($data['kd_pembelian']); ?>
                                 <tr class="odd gradeX">
                                     <td><?= $index + 1; ?></td>
                                     <td><?= $data['kd_pembelian']; ?></td>
@@ -46,8 +46,8 @@ if (isset($_GET['hapus'])) {
                                         <a href="nota/cetakdetailpembelian.php?kdpembelian=<?= $data['kd_pembelian']; ?>" target="_BLANK" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Detail</a>
 
                                         <?php
-                                        $cek = $pembelian->cek_hapuspembelian($data['kd_pembelian']);
-                                if ($cek === true) : ?>
+            $cek = $pembelian->cek_hapuspembelian($data['kd_pembelian']);
+    if ($cek === true) : ?>
                                             <a href="index.php?page=pembelian&hapus=<?= $data['kd_pembelian']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
                                         <?php endif ?>
                                         <?php if ($cek === false) : ?>
@@ -56,7 +56,7 @@ if (isset($_GET['hapus'])) {
                                     </td>
                                 </tr>
                             <?php
-                            } ?>
+} ?>
                         </tbody>
                     </table>
                 </div>

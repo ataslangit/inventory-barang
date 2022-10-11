@@ -32,8 +32,8 @@ if (isset($_GET['hapus'])) {
                             <?php
                             $brg = $barang->tampil_barang();
 
-                            foreach ($brg as $index => $data) {
-                            ?>
+foreach ($brg as $index => $data) {
+    ?>
                                 <tr class="odd gradeX">
                                     <td><?= $index + 1; ?></td>
                                     <td><?= $data['kd_barang']; ?></td>
@@ -48,7 +48,7 @@ if (isset($_GET['hapus'])) {
                                     </td>
                                 </tr>
                             <?php
-                            } ?>
+} ?>
                         </tbody>
                     </table>
                 </div>

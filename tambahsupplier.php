@@ -17,7 +17,7 @@ $supplier = new \Ataslangit\DB\Supllier();
                                 Data Tersimpan
                                 </div>";
                 }
-                ?>
+?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Nama Supplier</label>

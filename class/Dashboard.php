@@ -11,7 +11,7 @@ class Dashboard
         $DB         = new DataBase();
         $this->link = $DB->sambungkan();
     }
-    
+
     public function penjualan_hariini()
     {
         $hari = date('Y-m-d');

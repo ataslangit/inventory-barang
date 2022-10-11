@@ -11,7 +11,7 @@ class Penjualan extends Barang
         $DB         = new DataBase();
         $this->link = $DB->sambungkan();
     }
-    
+
     public function kode_otomatis()
     {
         $qry   = mysqli_query($this->link, 'SELECT MAX(kd_penjualan) AS kode FROM penjualan');

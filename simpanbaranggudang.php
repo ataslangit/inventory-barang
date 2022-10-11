@@ -3,8 +3,8 @@
 $barang = new \Ataslangit\DB\Barang();
 
 if (isset($_POST['save'])) {
-	$barang->simpan_barang_gudang($_POST['kdbarang'], $_POST['hargaj'], $_GET['kdbl']);
-	echo "<script>bootbox.alert('Data Berhasil Di Tambahkan!', function(){
+    $barang->simpan_barang_gudang($_POST['kdbarang'], $_POST['hargaj'], $_GET['kdbl']);
+    echo "<script>bootbox.alert('Data Berhasil Di Tambahkan!', function(){
 				window.location = 'index.php?page=barangpembelian';
 			});</script>";
 }

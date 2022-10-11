@@ -11,7 +11,7 @@ class Laporan
         $DB         = new DataBase();
         $this->link = $DB->sambungkan();
     }
-    
+
     public function tampil_penjualan_bulan($bln1, $bln2)
     {
         $qry = mysqli_query($this->link, "SELECT * FROM penjualan pen

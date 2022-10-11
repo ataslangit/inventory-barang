@@ -17,7 +17,7 @@ $perusahaan = new \Ataslangit\DB\Perusahaan();
                         });</script>";
                 }
                 $per = $perusahaan->tampil_perusahaan();
-                ?>
+?>
                 <form method="POST" id="forminput" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nama Perusahaan</label>

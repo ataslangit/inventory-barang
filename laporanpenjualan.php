@@ -124,7 +124,7 @@ $laporan = new \Ataslangit\DB\Laporan();
 						</tr>
 					<?php
                         }
-                ?>
+?>
 					</tbody>
 				</table>
 			</div>

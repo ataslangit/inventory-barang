@@ -31,8 +31,8 @@ if (isset($_GET['hapus'])) {
                             <?php
                             $adm = $admin->tampil_admin();
 
-                            foreach ($adm as $index => $data) {
-                                ?>
+foreach ($adm as $index => $data) {
+    ?>
                                 <tr class="odd gradeX">
                                     <td><?= $index + 1; ?></td>
                                     <td><?= $data['nama']; ?></td>
@@ -47,7 +47,7 @@ if (isset($_GET['hapus'])) {
                                     </td>
                                 </tr>
                             <?php
-                            } ?>
+} ?>
                         </tbody>
                     </table>
                 </div>

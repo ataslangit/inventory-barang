@@ -24,8 +24,8 @@
                             <?php
                             $pem = $pembelian->tampil_barang_pembelian();
 
-                            foreach ($pem as $index => $data) {
-                            ?>
+foreach ($pem as $index => $data) {
+    ?>
                                 <tr class="odd gradeX">
                                     <td><?= $index + 1; ?></td>
                                     <td><?= $data['nama_barang_beli']; ?></td>
@@ -37,7 +37,7 @@
                                     </td>
                                 </tr>
                             <?php
-                            } ?>
+} ?>
                         </tbody>
                     </table>
                 </div>

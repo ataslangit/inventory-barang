@@ -9,14 +9,14 @@
 			<hr />
 			<div class="box-body">
 				<?php
-				if (isset($_POST['save'])) {
-					$barang->simpan_barang($_POST['kdbarang'], $_POST['nama'], $_POST['satuan'], $_POST['hargaj'], $_POST['hargab'], $_POST['stok']);
-					echo "<div class='alert alert-info alert-dismissable' id='divAlert'>
+                if (isset($_POST['save'])) {
+                    $barang->simpan_barang($_POST['kdbarang'], $_POST['nama'], $_POST['satuan'], $_POST['hargaj'], $_POST['hargab'], $_POST['stok']);
+                    echo "<div class='alert alert-info alert-dismissable' id='divAlert'>
                                 <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
                                 Data Tersimpan
                                 </div>";
-				}
-				?>
+                }
+?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Kode Barang</label>

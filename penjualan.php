@@ -24,8 +24,8 @@
                             <?php
                             $pen = $penjualan->tampil_penjualan();
 
-                            foreach ($pen as $index => $data) {
-                                $jumlahb = $penjualan->hitung_item_penjualan($data['kd_penjualan']); ?>
+foreach ($pen as $index => $data) {
+    $jumlahb = $penjualan->hitung_item_penjualan($data['kd_penjualan']); ?>
                                 <tr class="odd gradeX">
                                     <td><?= $index + 1; ?></td>
                                     <td><?= $data['kd_penjualan']; ?></td>
@@ -37,7 +37,7 @@
                                     </td>
                                 </tr>
                             <?php
-                            } ?>
+} ?>
                         </tbody>
                     </table>
                 </div>

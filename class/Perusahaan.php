@@ -11,7 +11,7 @@ class Perusahaan
         $DB         = new DataBase();
         $this->link = $DB->sambungkan();
     }
-    
+
     public function tampil_perusahaan()
     {
         $qry = mysqli_query($this->link, "SELECT * FROM perusahaan WHERE kd_perusahaan = '1'");

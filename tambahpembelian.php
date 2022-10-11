@@ -3,19 +3,19 @@ $pembelian = new \Ataslangit\DB\Pembelian();
 ?>
 <div class="row">
 	<?php
-    $kode      = $pembelian->kode_otomatis();
-    $subtotal  = $pembelian->hitung_total_sementara($kode);
-    $cekbarang = $pembelian->cek_data_barangp($kode);
+    $kode  = $pembelian->kode_otomatis();
+$subtotal  = $pembelian->hitung_total_sementara($kode);
+$cekbarang = $pembelian->cek_data_barangp($kode);
 
-    if (isset($_POST['tambah'])) {
-        $pembelian->tambah_barang_sementara($kode, $_POST['nama'], $_POST['satuan'], $_POST['hargab'], $_POST['item']);
-        echo "<script>location='index.php?page=tambahpembelian';</script>";
-    }
-    if (isset($_POST['save'])) {
-        $pembelian->simpan_pembelian($_POST['kdpembelian'], $_POST['tglpembelian'], $_POST['supplier'], $subtotal);
-        $pem     = $pembelian->ambil_kdpem();
-        $kodepem = $pem['kd_pembelian'];
-        echo "<script>
+if (isset($_POST['tambah'])) {
+    $pembelian->tambah_barang_sementara($kode, $_POST['nama'], $_POST['satuan'], $_POST['hargab'], $_POST['item']);
+    echo "<script>location='index.php?page=tambahpembelian';</script>";
+}
+if (isset($_POST['save'])) {
+    $pembelian->simpan_pembelian($_POST['kdpembelian'], $_POST['tglpembelian'], $_POST['supplier'], $subtotal);
+    $pem     = $pembelian->ambil_kdpem();
+    $kodepem = $pem['kd_pembelian'];
+    echo "<script>
 			bootbox.confirm('Lanjutkan Cetak Nota!', function(confirmed){
         	if (confirmed) {
         		window.location ='index.php?page=tambahpembelian';
@@ -25,13 +25,13 @@ $pembelian = new \Ataslangit\DB\Pembelian();
         	}
         });
 		</script>";
-    }
+}
 
-    if (isset($_GET['hapusbs'])) {
-        $pembelian->hapus_barang_sementara($_GET['hapusbs']);
-        echo "<script>location='index.php?page=tambahpembelian';</script>";
-    }
-    ?>
+if (isset($_GET['hapusbs'])) {
+    $pembelian->hapus_barang_sementara($_GET['hapusbs']);
+    echo "<script>location='index.php?page=tambahpembelian';</script>";
+}
+?>
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -84,14 +84,14 @@ $pembelian = new \Ataslangit\DB\Pembelian();
 						<select class="form-control" name="supplier" id="supplier">
 							<option value="">Pilih Supplier</option>
 							<?php
-                            $sp = $supplier->tampil_supplier();
+                        $sp = $supplier->tampil_supplier();
 
-                            foreach ($sp as $index => $data) {
-                                ?>
+foreach ($sp as $index => $data) {
+    ?>
 								<option value="<?= $data['kd_supplier']; ?>"><?= $data['nama_supplier']; ?></option>
 							<?php
-                            }
-                            ?>
+}
+?>
 						</select>
 					</div>
 			</div>

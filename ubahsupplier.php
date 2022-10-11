@@ -17,7 +17,7 @@ $supplier = new \Ataslangit\DB\Supllier();
 						});</script>";
                 }
                 $sp = $supplier->ambil_supplier($_GET['id']);
-                ?>
+?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Nama Supplier</label>

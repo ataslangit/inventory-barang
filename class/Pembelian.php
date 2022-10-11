@@ -11,7 +11,7 @@ class Pembelian
         $DB         = new DataBase();
         $this->link = $DB->sambungkan();
     }
-    
+
     public function kode_otomatis()
     {
         $qry   = mysqli_query($this->link, 'SELECT MAX(kd_pembelian) AS kode FROM pembelian');

@@ -9,14 +9,14 @@
 			<hr />
 			<div class="box-body">
 				<?php
-				if (isset($_POST['save'])) {
-					$barang->ubah_barang($_POST['nama'], $_POST['satuan'], $_POST['hargaj'], $_POST['hargab'], $_POST['stok'], $_GET['id']);
-					echo "<script>bootbox.alert('Data Terubah', function(){
+                if (isset($_POST['save'])) {
+                    $barang->ubah_barang($_POST['nama'], $_POST['satuan'], $_POST['hargaj'], $_POST['hargab'], $_POST['stok'], $_GET['id']);
+                    echo "<script>bootbox.alert('Data Terubah', function(){
 							window.location = 'index.php?page=barang';
 						});</script>";
-				}
-				$brg = $barang->ambil_barang($_GET['id']);
-				?>
+                }
+                $brg = $barang->ambil_barang($_GET['id']);
+?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Nama Barang</label>

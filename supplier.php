@@ -29,8 +29,8 @@ if (isset($_GET['hapus'])) {
                             <?php
                             $sp = $supplier->tampil_supplier();
 
-                            foreach ($sp as $index => $data) {
-                                ?>
+foreach ($sp as $index => $data) {
+    ?>
                                 <tr class="odd gradeX">
                                     <td><?= $index + 1; ?></td>
                                     <td><?= $data['nama_supplier']; ?></td>
@@ -41,7 +41,7 @@ if (isset($_GET['hapus'])) {
                                     </td>
                                 </tr>
                             <?php
-                            } ?>
+} ?>
                         </tbody>
                     </table>
                 </div>

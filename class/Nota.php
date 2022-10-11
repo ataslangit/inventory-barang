@@ -11,7 +11,7 @@ class Nota
         $DB         = new DataBase();
         $this->link = $DB->sambungkan();
     }
-    
+
     public function tampil_nota_pembelian($kd)
     {
         $qry = mysqli_query($this->link, "SELECT * FROM supplier sup
