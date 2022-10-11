@@ -1,4 +1,6 @@
 <?php
+$barang = new \Ataslangit\DB\Barang();
+
 if (isset($_GET['hapus'])) {
     $barang->hapus_barang($_GET['hapus']);
     echo "<script>location='index.php?page=barang';</script>";
@@ -28,24 +30,25 @@ if (isset($_GET['hapus'])) {
                         </thead>
                         <tbody>
                             <?php
-                                $brg = $barang->tampil_barang();
+                            $brg = $barang->tampil_barang();
 
 foreach ($brg as $index => $data) {
     ?>
-                            <tr class="odd gradeX">
-                                <td><?= $index + 1; ?></td>
-                                <td><?= $data['kd_barang']; ?></td>
-                                <td><?= $data['nama_barang']; ?></td>
-                                <td><?= $data['satuan']; ?></td>
-                                <td><?= number_format($data['harga_jual']); ?></td>
-                                <td><?= number_format($data['harga_beli']); ?></td>
-                                <td><?= $data['stok']; ?></td>
-                                <td>
-                                    <a href="index.php?page=ubahbarang&id=<?= $data['kd_barang']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a href="index.php?page=barang&hapus=<?= $data['kd_barang']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
-                                </td>
-                            </tr>
-                            <?php } ?>
+                                <tr class="odd gradeX">
+                                    <td><?= $index + 1; ?></td>
+                                    <td><?= $data['kd_barang']; ?></td>
+                                    <td><?= $data['nama_barang']; ?></td>
+                                    <td><?= $data['satuan']; ?></td>
+                                    <td><?= number_format($data['harga_jual']); ?></td>
+                                    <td><?= number_format($data['harga_beli']); ?></td>
+                                    <td><?= $data['stok']; ?></td>
+                                    <td>
+                                        <a href="index.php?page=ubahbarang&id=<?= $data['kd_barang']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                        <a href="index.php?page=barang&hapus=<?= $data['kd_barang']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
+                                    </td>
+                                </tr>
+                            <?php
+} ?>
                         </tbody>
                     </table>
                 </div>

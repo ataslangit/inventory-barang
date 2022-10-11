@@ -1,3 +1,5 @@
+<?php $penjualan = new \Ataslangit\DB\Penjualan();
+?>
 <div class="row">
     <div class="col-md-12">
         <!-- Advanced Tables -->
@@ -20,22 +22,22 @@
                         </thead>
                         <tbody>
                             <?php
-                                $pen = $penjualan->tampil_penjualan();
+                            $pen = $penjualan->tampil_penjualan();
 
-                            foreach ($pen as $index => $data) {
-                                $jumlahb = $penjualan->hitung_item_penjualan($data['kd_penjualan']);
-                                ?>
-                            <tr class="odd gradeX">
-                                <td><?= $index + 1; ?></td>
-                                <td><?= $data['kd_penjualan']; ?></td>
-                                <td><?= $data['tgl_penjualan']; ?></td>
-                                <td><?= $jumlahb['jumlah']; ?></td>
-                                <td>Rp. <?= number_format($data['total_penjualan']); ?></td>
-                                <td>
-                                    <a href="nota/cetakdetailpenjualan.php?kdpenjualan=<?= $data['kd_penjualan']; ?>" target="_BLANK" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Detail</a>
-                                </td>
-                            </tr>
-                            <?php } ?>
+foreach ($pen as $index => $data) {
+    $jumlahb = $penjualan->hitung_item_penjualan($data['kd_penjualan']); ?>
+                                <tr class="odd gradeX">
+                                    <td><?= $index + 1; ?></td>
+                                    <td><?= $data['kd_penjualan']; ?></td>
+                                    <td><?= $data['tgl_penjualan']; ?></td>
+                                    <td><?= $jumlahb['jumlah']; ?></td>
+                                    <td>Rp. <?= number_format($data['total_penjualan']); ?></td>
+                                    <td>
+                                        <a href="nota/cetakdetailpenjualan.php?kdpenjualan=<?= $data['kd_penjualan']; ?>" target="_BLANK" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Detail</a>
+                                    </td>
+                                </tr>
+                            <?php
+} ?>
                         </tbody>
                     </table>
                 </div>

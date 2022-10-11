@@ -1,20 +1,20 @@
 <?php
-
+$laporan = new \Ataslangit\DB\Laporan();
 ?>
 <div class="row">
 	<div class="col-md-12">
 		<h2>Laporan Pembelian</h2>
 	</div>
-	<br/><br/>
-	<hr/>
-	<br/>
+	<br /><br />
+	<hr />
+	<br />
 	<div class="col-md-12">
 		<form method="POST" class="form-inline">
 			<div class="form-group">
 				<input type="date" id="tgl1" class="form-control" name="tgl1">
 			</div>
 			<div class="form-group">
-				<label>  Sampai  </label>
+				<label> Sampai </label>
 				<input type="date" id="tgl2" class="form-control" name="tgl2">
 			</div>
 			<div class="form-group">
@@ -24,18 +24,18 @@
 		</form>
 	</div>
 </div>
-<hr/>
+<hr />
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading" align="center">
-				<?php if (isset($_POST['prosess'])): ?>
+				<?php if (isset($_POST['prosess'])) : ?>
 					<a href="laporan/cetaklaporanpembelian.php?tgl1=<?= $_POST['tgl1']; ?>&tgl2=<?= $_POST['tgl2']; ?>" target="_BLANK" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
 				<?php endif ?>
-				<?php if (isset($_POST['semua'])): ?>
+				<?php if (isset($_POST['semua'])) : ?>
 					<a href="laporan/cetaklaporanpembelian.php?semua" target="_BLANK" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
 				<?php endif ?>
-				<?php if (! isset($_POST['prosess']) && ! isset($_POST['semua'])): ?>
+				<?php if (! isset($_POST['prosess']) && ! isset($_POST['semua'])) : ?>
 					<a href="#" class="btn btn-info" disabled="disabled"><i class="fa fa-print"></i> Cetak</a>
 				<?php endif ?>
 			</div>
@@ -55,7 +55,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php
+						<?php
                         if (isset($_POST['prosess'])) {
                             $total = $laporan->hitung_total_pembelian_bulan($_POST['tgl1'], $_POST['tgl2']);
                             $cek   = $laporan->cek_penjualan_bulan($_POST['tgl1'], $_POST['tgl2']);
@@ -66,27 +66,26 @@
 
                                 foreach ($lapbl as $index => $data) {
                                     ?>
-						<tr>
-							<td><?= $index + 1; ?></td>
-							<td><?= $data['kd_pembelian']; ?></td>
-							<td><?= date_format(date_create($data['tgl_pembelian']), 'd-m-Y'); ?></td>
-							<td><?= $data['nama_supplier']; ?></td>
-							<td><?= $data['nama_barang_beli']; ?></td>
-							<td><?= $data['satuan']; ?></td>
-							<td><?= $data['jumlah']; ?></td>
-							<td>Rp. <?= number_format($data['harga_beli']); ?></td>
-							<td>Rp. <?= number_format($data['subtotal']); ?></td>
-						</tr>
-					<?php
-                                }
-                                ?>
-					<?php
-                            }?>
-						<tr>
-							<td colspan="8" align="center">TOTAL</td>
-							<td>Rp. <?= number_format($total); ?></td>
-						</tr>
-					<?php
+									<tr>
+										<td><?= $index + 1; ?></td>
+										<td><?= $data['kd_pembelian']; ?></td>
+										<td><?= date_format(date_create($data['tgl_pembelian']), 'd-m-Y'); ?></td>
+										<td><?= $data['nama_supplier']; ?></td>
+										<td><?= $data['nama_barang_beli']; ?></td>
+										<td><?= $data['satuan']; ?></td>
+										<td><?= $data['jumlah']; ?></td>
+										<td>Rp. <?= number_format($data['harga_beli']); ?></td>
+										<td>Rp. <?= number_format($data['subtotal']); ?></td>
+									</tr>
+								<?php
+                                } ?>
+							<?php
+                            } ?>
+							<tr>
+								<td colspan="8" align="center">TOTAL</td>
+								<td>Rp. <?= number_format($total); ?></td>
+							</tr>
+							<?php
                         } elseif (isset($_POST['semua'])) {
                             $total = $laporan->hitung_total_pembelian();
                             $cek   = $laporan->cek_pembelian();
@@ -97,37 +96,36 @@
 
                                 foreach ($lap as $index => $data) {
                                     ?>
-						<tr>
-							<td><?= $index + 1; ?></td>
-							<td><?= $data['kd_pembelian']; ?></td>
-							<td><?= date_format(date_create($data['tgl_pembelian']), 'd-m-Y'); ?></td>
-							<td><?= $data['nama_supplier']; ?></td>
-							<td><?= $data['nama_barang_beli']; ?></td>
-							<td><?= $data['satuan']; ?></td>
-							<td><?= $data['jumlah']; ?></td>
-							<td>Rp. <?= number_format($data['harga_beli']); ?></td>
-							<td>Rp. <?= number_format($data['subtotal']); ?></td>
-						</tr>
-					<?php
-                                }
-                                ?>
-					<?php
-                            }?>
-						<tr>
-							<td colspan="8" align="center">TOTAL</td>
-							<td>Rp. <?= number_format($total); ?></td>
-						</tr>
-					<?php
+									<tr>
+										<td><?= $index + 1; ?></td>
+										<td><?= $data['kd_pembelian']; ?></td>
+										<td><?= date_format(date_create($data['tgl_pembelian']), 'd-m-Y'); ?></td>
+										<td><?= $data['nama_supplier']; ?></td>
+										<td><?= $data['nama_barang_beli']; ?></td>
+										<td><?= $data['satuan']; ?></td>
+										<td><?= $data['jumlah']; ?></td>
+										<td>Rp. <?= number_format($data['harga_beli']); ?></td>
+										<td>Rp. <?= number_format($data['subtotal']); ?></td>
+									</tr>
+								<?php
+                                } ?>
+							<?php
+                            } ?>
+							<tr>
+								<td colspan="8" align="center">TOTAL</td>
+								<td>Rp. <?= number_format($total); ?></td>
+							</tr>
+						<?php
                         } else {
                             ?>
-						<tr>
-							<td colspan="9" align="center">Pilih Opsi Tampil</td>
-						</tr>
-						<tr>
-							<td colspan="8" align="center">TOTAL</td>
-							<td></td>
-						</tr>
-					<?php
+							<tr>
+								<td colspan="9" align="center">Pilih Opsi Tampil</td>
+							</tr>
+							<tr>
+								<td colspan="8" align="center">TOTAL</td>
+								<td></td>
+							</tr>
+						<?php
                         }
 ?>
 					</tbody>

@@ -1,3 +1,6 @@
+<?php
+$laporan = new \Ataslangit\DB\Laporan();
+?>
 <div class="row">
 	<div class="col-md-12">
 		<h2>Laporan Penjualan</h2>
@@ -73,10 +76,9 @@
 							<td>Rp. <?= number_format($data['subtotal']); ?></td>
 						</tr>
 					<?php
-                                }
-                                ?>
+                                } ?>
 					<?php
-                            }?>
+                            } ?>
 						<tr>
 							<td colspan="7" align="center">TOTAL</td>
 							<td>Rp. <?= number_format($total); ?></td>
@@ -103,10 +105,9 @@
 							<td>Rp. <?= number_format($data['subtotal']); ?></td>
 						</tr>
 					<?php
-                                }
-                                ?>
+                                } ?>
 					<?php
-                            }?>
+                            } ?>
 						<tr>
 							<td colspan="7" align="center">TOTAL</td>
 							<td>Rp. <?= number_format($total); ?></td>
@@ -123,7 +124,7 @@
 						</tr>
 					<?php
                         }
-				?>
+?>
 					</tbody>
 				</table>
 			</div>

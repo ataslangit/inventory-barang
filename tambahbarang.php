@@ -1,20 +1,22 @@
+<?php $barang = new \Ataslangit\DB\Barang();
+?>
 <div class="row">
 	<div class="col-md-12">
 		<div class="box">
 			<div class="box-header">
 				<h3 class="box-title" style="padding-top:0; margin-top:0; color:#f00;">Tambah Barang</h3>
 			</div>
-			<hr/>
+			<hr />
 			<div class="box-body">
 				<?php
-                    if (isset($_POST['save'])) {
-                        $barang->simpan_barang($_POST['kdbarang'], $_POST['nama'], $_POST['satuan'], $_POST['hargaj'], $_POST['hargab'], $_POST['stok']);
-                        echo "<div class='alert alert-info alert-dismissable' id='divAlert'>
+                if (isset($_POST['save'])) {
+                    $barang->simpan_barang($_POST['kdbarang'], $_POST['nama'], $_POST['satuan'], $_POST['hargaj'], $_POST['hargab'], $_POST['stok']);
+                    echo "<div class='alert alert-info alert-dismissable' id='divAlert'>
                                 <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
                                 Data Tersimpan
                                 </div>";
-                    }
-				?>
+                }
+?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Kode Barang</label>
@@ -50,61 +52,60 @@
 </div>
 <script>
 	//upper
-	$(function(){
+	$(function() {
 		$('#kdbarang').focusout(function() {
-        	// Uppercase-ize contents
-        	this.value = this.value.toLocaleUpperCase();
-    	});
-    	$('#satuan').focusout(function() {
-        	// Uppercase-ize contents
-        	this.value = this.value.toLocaleUpperCase();
-    	});
+			// Uppercase-ize contents
+			this.value = this.value.toLocaleUpperCase();
+		});
+		$('#satuan').focusout(function() {
+			// Uppercase-ize contents
+			this.value = this.value.toLocaleUpperCase();
+		});
 	});
 	//fungsi hide div
-	$(function(){
-		setTimeout(function(){$("#divAlert").fadeOut(900)}, 500);
+	$(function() {
+		setTimeout(function() {
+			$("#divAlert").fadeOut(900)
+		}, 500);
 	});
 	//ajax
-	$(document).ready(function(){
-		$('#kdbarang').blur(function(){
+	$(document).ready(function() {
+		$('#kdbarang').blur(function() {
 			var kdbarang = $(this).val();
 			if (kdbarang == "") {
 				$('#showresult').html("");
-			}
-			else{
+			} else {
 				$.ajax({
-					url: "validasi/cek-kdbarang.php?kdbarang="+kdbarang
-				}).done(function(data){
+					url: "validasi/cek-kdbarang.php?kdbarang=" + kdbarang
+				}).done(function(data) {
 					$('#showresult').html(data);
 				});
 			}
 		});
 	});
 	//validasi form
-	function validateText(id){
-		if ($('#'+id).val()== null || $('#'+id).val()== "") {
-			var div = $('#'+id).closest('div');
+	function validateText(id) {
+		if ($('#' + id).val() == null || $('#' + id).val() == "") {
+			var div = $('#' + id).closest('div');
 			div.addClass("has-error has-feedback");
 			return false;
-		}
-		else{
-			var div = $('#'+id).closest('div');
+		} else {
+			var div = $('#' + id).closest('div');
 			div.removeClass("has-error has-feedback");
 			return true;
 		}
 	}
-	$(document).ready(function(){
-		$("#formbtn").click(function(){
-	        var input = kdbarang.value;
+	$(document).ready(function() {
+		$("#formbtn").click(function() {
+			var input = kdbarang.value;
 			if (!validateText('kdbarang')) {
 				$('#kdbarang').focus();
 				return false;
+			} else if (!(/^\S{0,}$/.test(input))) {
+				$('#kdbarang').focus();
+				bootbox.alert('Tidak Boleh Menggunakan Spasi');
+				return false;
 			}
-			else if (!(/^\S{0,}$/.test(input))) {
-	           	$('#kdbarang').focus();
-	           	bootbox.alert('Tidak Boleh Menggunakan Spasi');
-	            return false;
-	        }
 
 			if (!validateText('nama')) {
 				$('#nama').focus();

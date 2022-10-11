@@ -1,3 +1,6 @@
+<?php
+$admin = new \Ataslangit\DB\Admin();
+?>
 <div class="row">
 	<div class="col-md-12">
 		<div class="box">
@@ -15,7 +18,7 @@
 						});</script>";
                     }
                     $adm = $admin->ambil_admin($_GET['id']);
-				?>
+?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Email</label>

@@ -1,20 +1,23 @@
+<?php
+$perusahaan = new \Ataslangit\DB\Perusahaan();
+?>
 <div class="row">
     <div class="col-md-12">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title" style="padding-top:0; margin-top:0; color:#f00;">Setting Perusahaan</h3>
             </div>
-            <hr/>
+            <hr />
             <div class="box-body">
                 <?php
-                    if (isset($_POST['save'])) {
-                        $perusahaan->simpan_perusahaan($_POST['nama'], $_POST['alamat'], $_POST['pemilik'], $_POST['kota']);
-                        echo "<script>bootbox.alert('Tersimpan!', function(){
+                if (isset($_POST['save'])) {
+                    $perusahaan->simpan_perusahaan($_POST['nama'], $_POST['alamat'], $_POST['pemilik'], $_POST['kota']);
+                    echo "<script>bootbox.alert('Tersimpan!', function(){
                             window.location = 'index.php?page=perusahaan';
                         });</script>";
-                    }
-                    $per = $perusahaan->tampil_perusahaan();
-                ?>
+                }
+                $per = $perusahaan->tampil_perusahaan();
+?>
                 <form method="POST" id="forminput" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nama Perusahaan</label>
@@ -40,23 +43,25 @@
 </div>
 <script>
     //fungsi hide div
-    $(function(){
-        setTimeout(function(){$("#divAlert").fadeOut(900)}, 500);
+    $(function() {
+        setTimeout(function() {
+            $("#divAlert").fadeOut(900)
+        }, 500);
     });
-    function validateText(id){
-        if ($('#'+id).val()== null || $('#'+id).val()== "") {
-            var div = $('#'+id).closest('div');
+
+    function validateText(id) {
+        if ($('#' + id).val() == null || $('#' + id).val() == "") {
+            var div = $('#' + id).closest('div');
             div.addClass("has-error has-feedback");
             return false;
-        }
-        else{
-            var div = $('#'+id).closest('div');
+        } else {
+            var div = $('#' + id).closest('div');
             div.removeClass("has-error has-feedback");
             return true;
         }
     }
-    $(document).ready(function(){
-        $("#formbtn").click(function(){
+    $(document).ready(function() {
+        $("#formbtn").click(function() {
             if (!validateText('nama')) {
                 $('#nama').focus();
                 return false;
