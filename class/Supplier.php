@@ -2,7 +2,7 @@
 
 namespace Ataslangit\DB;
 
-class Supllier
+class Supplier
 {
     private $link;
 

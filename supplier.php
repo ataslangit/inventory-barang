@@ -1,6 +1,6 @@
 <?php
 
-$supplier = new \Ataslangit\DB\Supllier();
+$supplier = new \Ataslangit\DB\Supplier();
 
 if (isset($_GET['hapus'])) {
     $supplier->hapus_supplier($_GET['hapus']);

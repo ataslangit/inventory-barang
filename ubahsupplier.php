@@ -1,5 +1,5 @@
 <?php
-$supplier = new \Ataslangit\DB\Supllier();
+$supplier = new \Ataslangit\DB\Supplier();
 ?>
 <div class="row">
 	<div class="col-md-12">
